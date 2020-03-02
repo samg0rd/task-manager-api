@@ -25,7 +25,7 @@ router.post('/users', async (req,res)=>{
         });
 
     } catch (error) {
-        console.log('❌ERRR -> ', error);        
+        // console.log('❌ERRR -> ', error);        
         res.status(400).send(error);
     }    
 })

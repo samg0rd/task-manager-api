@@ -31,6 +31,10 @@ router.get('/tasks', auth, async (req,res)=>{
             match.completed = req.query.completed === 'true'
         }
 
+        if(req.query.completed === false){
+            match.notCompleted = req.query.completed === 'false'
+        }
+
         const sort = {}
         if(req.query.sortBy){
             const parts = req.query.sortBy.split(':');
@@ -137,7 +141,7 @@ router.delete('/tasks/:id', auth, async (req,res)=>{
             owner: req.user._id
         })
         if(!task){
-            res.status(404).send();
+            return res.status(404).send();
         }
         res.send(task);
     } catch (error) {
